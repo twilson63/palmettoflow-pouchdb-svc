@@ -1,6 +1,6 @@
 {
   "name": "palmettoflow-pouchdb-svc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A service that provides the following functions on a pouchDB Database:",
   "main": "index.js",
   "scripts": {
