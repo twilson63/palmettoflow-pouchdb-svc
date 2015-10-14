@@ -15,7 +15,7 @@ svc.__set__('jwt', {
 })
 
 svc({ 
-  COUCHSVR: 'http://admin:admin@localhost:5984',
+  COUCHSVR: 'local',
   PREFIX: 'db_',
   SECRET: 'foo'
 }, ee) 

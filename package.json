@@ -4,7 +4,7 @@
   "description": "A service that provides the following functions on a pouchDB Database:",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap test"
   },
   "keywords": [],
   "author": "Tom",
