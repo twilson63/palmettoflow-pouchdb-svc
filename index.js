@@ -17,7 +17,7 @@ module.exports = function (config, ee) {
 
   ee.on('/db/allDocs', function (e) {
     jwt.verify(e.actor.token, secret, function (err, decoded) {
-      if (err) { return ee.emit(e, responseError(e, err)) }
+      if (err) { return ee.emit('send', responseError(e, err)) }
       var db = PouchDB([dbUrl, dbPrefix + e.object.db].join('/'))
       db.allDocs({
         start_key: e.object.start_key,
@@ -34,7 +34,7 @@ module.exports = function (config, ee) {
 
   ee.on('/db/put', function (e) {
     jwt.verify(e.actor.token, secret, function (err, decoded) {
-      if (err) { return ee.emit(e, responseError(e, err)) }
+      if (err) { return ee.emit('send', responseError(e, err)) }
       var db = PouchDB([dbUrl, dbPrefix + e.object.db].join('/'))
       db.put(e.object.doc).then(function (result) {
         ee.emit('send', response(e, result))
@@ -47,7 +47,7 @@ module.exports = function (config, ee) {
 
   ee.on('/db/get', function (e) {
     jwt.verify(e.actor.token, secret, function (err, decoded) {
-      if (err) { return responseError(e, err) }
+      if (err) { return responseError('send', err) }
       var db = PouchDB([dbUrl, dbPrefix + e.object.db].join('/'))
       db.get(e.object._id)
         .then(function (result) {
