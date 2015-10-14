@@ -21,6 +21,26 @@ svc({
 }, ee) 
 
 test('get all 1234', function (t) {
+  var ne = newEvent('db', 'query', {
+    db: 'tom',
+    view: 'docs/kotaks',
+    options: {
+      group_level: 1
+    }
+  }, {
+    token: 'foo'
+  })
+
+  ee.on(ne.from, function (event) {
+    console.log(event)
+    t.end()
+  })
+
+  ee.emit('send', ne)
+})
+
+
+test('get all 1234', function (t) {
   var ne = newEvent('db', 'allDocs', {
     db: 'tom',
     start_key: '1234',

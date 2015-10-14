@@ -37,7 +37,7 @@ module.exports = function (config, ee) {
       if (err) { return ee.emit('send', responseError(e, err)) }
       var db = PouchDB([dbUrl, dbPrefix + e.object.db].join('/'))
       db.query(e.object.view, e.object.options).then(function (result) {
-        ee.emit('send', response(e, _(result.rows).pluck('doc')))
+        ee.emit('send', response(e, result))
       })
       .catch(function (err) {
         ee.emit('send', responseError(e, err))
